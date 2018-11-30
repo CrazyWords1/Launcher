@@ -510,14 +510,14 @@ public final class SecurityHelper {
 
     public static byte[] encrypt(byte[] raw, byte[] clear) throws Exception {
         SecretKeySpec sKeySpec = new SecretKeySpec(raw, "AES");
-        Cipher cipher = Cipher.getInstance("AES");
+        encryptCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, sKeySpec);
         return cipher.doFinal(clear);
     }
 
     public static byte[] decrypt(byte[] raw, byte[] encrypted) throws Exception {
         SecretKeySpec sKeySpec = new SecretKeySpec(raw, "AES");
-        Cipher cipher = Cipher.getInstance("AES");
+        encryptCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         cipher.init(Cipher.DECRYPT_MODE, sKeySpec);
         return cipher.doFinal(encrypted);
     }
